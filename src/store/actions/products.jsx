@@ -1,9 +1,5 @@
 import Product from "../../models/Product";
-
-export const DELETE_PRODUCT = "DELETE_PRODUCT";
-export const CREATE_PRODUCT = "CREATE_PRODUCT";
-export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
-export const SET_PRODUCT = "SET_PRODUCT";
+import { CREATE_PRODUCT, DELETE_PRODUCT, SET_PRODUCT, UPDATE_PRODUCT } from "./actionType";
 
 export const deleteproduct = (productId) => {
     return async dispatch => {

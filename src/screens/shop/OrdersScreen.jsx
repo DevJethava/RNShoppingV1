@@ -2,8 +2,8 @@ import React, { useEffect, useLayoutEffect } from 'react';
 import {
     StyleSheet,
     FlatList,
-    Text,
-    View
+    View,
+    Text
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import CustomHeaderButton from '../../components/UI/CustomHeaderButton';
@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as ordersAction from "../../store/actions/orders";
 import Colors from '../../constants/Colors';
 import CartItem from '../../components/shop/CartItem';
+import moment from 'moment';
 
 const OrdersScreen = ({ navigation, route }) => {
 
@@ -41,7 +42,7 @@ const OrdersScreen = ({ navigation, route }) => {
     return (
         <FlatList
             style={{ backgroundColor: Colors.colorWhite }}
-            data={orders}
+            data={orders.reverse()}
             keyExtractor={(item, index) => index}
             renderItem={(itemData) => {
                 return (
@@ -66,6 +67,9 @@ const OrdersScreen = ({ navigation, route }) => {
                             />
                         ))}
                         {/* {JSON.stringify(itemData.item?.items?.length)} */}
+                        <View style={{ alignItems: 'flex-end' }}>
+                            <Text>{moment(itemData.item.date).format("DD-MM-YYYY, hh:mm A")}</Text>
+                        </View>
                     </View>
                 )
             }

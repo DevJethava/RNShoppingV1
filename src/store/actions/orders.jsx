@@ -1,8 +1,6 @@
 import API from "../../constants/API";
 import Order from "../../models/Order";
-
-export const ADD_ORDER = "ADD_ORDER";
-export const SET_ORDERS = "SET_ORDERS";
+import { ADD_ORDER, SET_ORDERS } from "./actionType";
 
 export const setOrders = () => {
     return async dispatch => {
