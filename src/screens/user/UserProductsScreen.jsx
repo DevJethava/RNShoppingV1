@@ -92,10 +92,20 @@ const UserProductsScreen = ({ navigation }) => {
         });
     }, [navigation]);
 
+    const deleteProduct = async (itemId) => {
+        try {
+            await dispatch(productsActions.deleteproduct(itemId))
+        } catch (err) {
+            Alert.alert("Error", err.message)
+        }
+    }
+
     return (
         <FlatList
             data={userProducts.reverse()}
             keyExtractor={(item) => item.id}
+            showsVerticalScrollIndicator={true}
+            showsHorizontalScrollIndicator={false}
             renderItem={
                 (itemData) => (
                     <AdminProductItem
@@ -104,12 +114,12 @@ const UserProductsScreen = ({ navigation }) => {
                         price={itemData.item.price}
                         onViewDetail={() => editProductHandler(itemData.item.id, itemData.item.title)}
                         onDelete={() => {
-                            Alert.alert('Detele', 'Are you sure you wants to Delete this Product?', [
+                            Alert.alert('Delete', 'Are you sure you wants to Delete this Product?', [
                                 {
                                     text: 'Cancel',
                                     style: 'cancel',
                                 },
-                                { text: 'OK', onPress: () => dispatch(productsActions.deleteproduct(itemData.item.id)) },
+                                { text: 'OK', onPress: () => deleteProduct(itemData.item.id) },
                             ])
                         }} />
                 )

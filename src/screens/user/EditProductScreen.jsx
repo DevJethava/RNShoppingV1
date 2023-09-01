@@ -5,7 +5,8 @@ import {
     StyleSheet,
     ScrollView,
     TextInput,
-    Platform
+    Platform,
+    Alert
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import Colors from '../../constants/Colors';
@@ -24,7 +25,7 @@ const EditProductScreen = ({ navigation, route }) => {
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState(editedProduct ? editedProduct.description : "");
 
-    const submitHandler = useCallback(() => {
+    const submitHandler = useCallback(async () => {
 
         if (editedProduct) {
 
@@ -38,8 +39,12 @@ const EditProductScreen = ({ navigation, route }) => {
                 alert("Description is Empty");
                 return;
             } else {
-                dispatch(productsAction.updateProduct(productId, title, description, imageUrl));
-                navigation.goBack();
+                try {
+                    await dispatch(productsAction.updateProduct(productId, title, description, imageUrl));
+                    navigation.goBack();
+                } catch (error) {
+                    Alert.alert("Error", error.message)
+                }
             }
         } else {
 
@@ -56,8 +61,12 @@ const EditProductScreen = ({ navigation, route }) => {
                 alert("Description is Empty");
                 return;
             } else {
-                dispatch(productsAction.createProduct(title, description, imageUrl, parseFloat(price)));
-                navigation.goBack();
+                try {
+                    await dispatch(productsAction.createProduct(title, description, imageUrl, parseFloat(price)));
+                    navigation.goBack();
+                } catch (error) {
+                    Alert.alert("Error", error.message)
+                }
             }
         }
     });

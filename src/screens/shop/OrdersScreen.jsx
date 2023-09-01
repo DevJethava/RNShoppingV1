@@ -19,11 +19,15 @@ const OrdersScreen = ({ navigation, route }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        try {
-            dispatch(ordersAction.setOrders());
-        } catch (error) {
-            alert(error);
+        const getOrderList = async () => {
+            try {
+                await dispatch(ordersAction.setOrders());
+            } catch (error) {
+                alert(error);
+            }
         }
+
+        getOrderList()
     }, [dispatch]);
 
     useLayoutEffect(() => {
