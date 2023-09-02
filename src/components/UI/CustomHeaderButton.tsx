@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '../../constants/Colors';
 import { Platform } from 'react-native';
 
-const CustomHeaderButton = props => {
+const CustomHeaderButton = (props) => {
     return (
         <HeaderButton
             {...props}

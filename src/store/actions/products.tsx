@@ -93,6 +93,7 @@ export const setProduct = () => {
                 ));
             }
         }, (error) => {
+            console.log(error)
             throw new Error("Something went Wrong !");
         })
 

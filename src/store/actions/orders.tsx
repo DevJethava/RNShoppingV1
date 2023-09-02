@@ -40,7 +40,7 @@ export const addOrder = (cartItems, totalAmount) => {
     return async dispatch => {
         // any async code you want!
         try {
-            await API.createProductAPI(JSON.stringify({
+            await API.createOrderAPI(JSON.stringify({
                 cartItems,
                 totalAmount,
                 date: date.toISOString()

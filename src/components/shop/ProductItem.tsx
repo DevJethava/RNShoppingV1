@@ -7,11 +7,20 @@ import {
     TouchableOpacity,
     Platform,
     TouchableNativeFeedback,
+    GestureResponderEvent,
 } from 'react-native';
 import Colors from '../../constants/Colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const ProductItem = props => {
+type ProductItemProps = {
+    imageUrl: string,
+    title: string,
+    price: string,
+    onViewDetail: ((event: GestureResponderEvent) => void) | undefined,
+    onAddToCart: ((event: GestureResponderEvent) => void) | undefined
+}
+
+const ProductItem = (props: ProductItemProps) => {
     let TouchableCmp = TouchableOpacity;
 
     if (Platform.OS === 'android' && Platform.Version >= 21) {

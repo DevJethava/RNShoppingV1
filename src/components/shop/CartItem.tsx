@@ -1,9 +1,17 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Platform, GestureResponderEvent } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '../../constants/Colors';
 
-const CartItem = props => {
+type CartItemProps = {
+    title?: string,
+    price: string,
+    quantity: string,
+    deletable: boolean,
+    onRemove?: ((event: GestureResponderEvent) => void) | undefined
+}
+
+const CartItem = (props: CartItemProps) => {
     return (
         <View style={styles.cardItem}>
             <View>

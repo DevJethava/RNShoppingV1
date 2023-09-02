@@ -3,7 +3,13 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import Colors from '../../constants/Colors';
 import CartItem from './CartItem';
 
-const OrderItem = props => {
+type OrderItemProps = {
+    amount: string,
+    date: string,
+    items: []
+}
+
+const OrderItem = (props: OrderItemProps) => {
     const [showDetails, setShowDetails] = useState(false);
 
     return (
@@ -25,7 +31,7 @@ const OrderItem = props => {
                         <CartItem
                             key={cartItem.productId}
                             quantity={cartItem.quantity}
-                            price={parseFloat(cartItem.sum)}
+                            price={parseFloat(cartItem.sum).toString()}
                             deletable={true}
                         />
                     ))}

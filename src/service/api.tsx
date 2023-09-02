@@ -16,7 +16,8 @@ const getProductsListAPI = () => {
             const response = await axiosInstance.get("products.json");
             resolve(response.data);
         } catch (error) {
-            console.log(error);
+            console.log(error.response.data);
+            console.log(error.response.status);
             reject(error);
         }
     });
@@ -89,7 +90,8 @@ const API = {
     getOrdersListAPI,
     createProductAPI,
     updateProductAPI,
-    deleteProductAPI
+    deleteProductAPI,
+    createOrderAPI
 };
 
 export default API;
